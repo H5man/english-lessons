@@ -33,13 +33,12 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
   return (
     <Shell
       // Заголовок страницы — выпадающий список всех уроков: тему можно сменить прямо здесь.
+      // replace: перебор тем стрелками не засоряет историю.
       title={
-        <h1 className="title title-pick">
-          <select value={lessonId} aria-label="Тема урока"
-            onChange={(e) => navigate(`/lesson/${e.target.value}`)}>
-            {lessons.map((l) => <option key={l.id} value={l.id}>{l.title}</option>)}
-          </select>
-        </h1>
+        <select className="title-pick" value={lessonId} aria-label="Тема урока"
+          onChange={(e) => navigate(`/lesson/${e.target.value}`, { replace: true })}>
+          {lessons.map((l) => <option key={l.id} value={l.id}>{l.title}</option>)}
+        </select>
       }
       docTitle={`${lesson.title} · ${lesson.date}`}
       footer={<>{lesson.date} · {lesson.phrases.length} {plural(lesson.phrases.length, ["фраза", "фразы", "фраз"])}</>}
