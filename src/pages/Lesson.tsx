@@ -4,7 +4,7 @@ import { Shell } from "@/components/Shell";
 import { Flashcards } from "@/components/quiz/Flashcards";
 import { ChoiceQuiz } from "@/components/quiz/ChoiceQuiz";
 import { GapQuiz } from "@/components/quiz/GapQuiz";
-import { getLesson } from "@/lessons";
+import { getLesson, lessons } from "@/lessons";
 
 type Section = "phrases" | "quiz";
 type Mode = "cards" | "choice" | "gap";
@@ -25,17 +25,25 @@ export default function LessonPage() {
 
 function LessonView({ lessonId, section }: { lessonId: string; section: Section }) {
   const lesson = getLesson(lessonId)!;
-  const { title, date, phrases } = lesson;
+  const { phrases } = lesson;
   const navigate = useNavigate();
   const [mode, setMode] = useState<Mode>("cards");
   const hint = MODES.find((t) => t.id === mode)!.hint;
 
   return (
     <Shell
-      title={title}
-      docTitle={`${title} · ${date}`}
-      meta={<>{date} · {phrases.length} {plural(phrases.length, ["фраза", "фразы", "фраз"])}</>}
-      nav={[{ id: "phrases", label: "Фразы", badge: phrases.length }, { id: "quiz", label: "Упражнения" }]}
+      // Заголовок страницы — выпадающий список всех уроков: тему можно сменить прямо здесь.
+      title={
+        <h1 className="title title-pick">
+          <select value={lessonId} aria-label="Тема урока"
+            onChange={(e) => navigate(`/lesson/${e.target.value}`)}>
+            {lessons.map((l) => <option key={l.id} value={l.id}>{l.title}</option>)}
+          </select>
+        </h1>
+      }
+      docTitle={`${lesson.title} · ${lesson.date}`}
+      footer={<>{lesson.date} · {lesson.phrases.length} {plural(lesson.phrases.length, ["фраза", "фразы", "фраз"])}</>}
+      nav={[{ id: "phrases", label: "Фразы", badge: lesson.phrases.length }, { id: "quiz", label: "Упражнения" }]}
       navLabel="Разделы урока" active={section}
       onNav={(s) => navigate(`/lesson/${lessonId}/${s}`, { replace: true })}
     >

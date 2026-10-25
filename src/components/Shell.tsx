@@ -5,14 +5,14 @@ export type NavItem = { id: string; label: string; badge?: number };
 
 /** Каркас страницы: полноширинная шапка, левое меню (на мобильном — липкое верхнее), контент. */
 export function Shell({
-  title, meta, docTitle, nav, active, onNav, navLabel, wide = false, home = false, children,
+  title, meta, docTitle, nav, active, onNav, navLabel, wide = false, home = false, footer, children,
 }: {
-  title: string; meta?: ReactNode; docTitle?: string;
+  title: ReactNode; meta?: ReactNode; docTitle?: string;
   nav?: NavItem[]; active?: string; onNav?: (id: string) => void; navLabel?: string;
-  wide?: boolean; home?: boolean; children: ReactNode;
+  wide?: boolean; home?: boolean; footer?: ReactNode; children: ReactNode;
 }) {
   const { pathname } = useLocation();
-  useEffect(() => { document.title = docTitle ?? title; }, [docTitle, title]);
+  useEffect(() => { document.title = docTitle ?? (typeof title === "string" ? title : ""); }, [docTitle, title]);
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
@@ -40,6 +40,7 @@ export function Shell({
         )}
         <main className={"content" + (wide ? " wide" : "")}>{children}</main>
       </div>
+      {footer && <footer className="foot">{footer}</footer>}
     </div>
   );
 }
