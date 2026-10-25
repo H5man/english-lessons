@@ -1,5 +1,5 @@
 // Реестр уроков. Новый урок = файл данных в этой папке + строка import и строка в массиве ниже.
-// (Это делает скрипт scripts/add-lesson.py — см. README.md.)
+// Файл генерирует scripts/add-lesson.py (см. README.md); можно править и руками.
 import type { Lesson } from "./types";
 import { lesson as l_2026_10_25_client_requirements } from "./2026-10-25-client-requirements";
 import { lesson as l_2026_10_23_tech_decision } from "./2026-10-23-tech-decision";
