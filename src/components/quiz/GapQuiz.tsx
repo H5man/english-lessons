@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Phrase } from "@/lessons/types";
 import { buildGaps } from "./quiz";
-import { Exercise, Missed, NeedMore, Options } from "./parts";
+import { Exercise, Missed, NeedMore, Options, Speak } from "./parts";
 
 export function GapQuiz({ phrases }: { phrases: Phrase[] }) {
   const [round, setRound] = useState(0);
@@ -41,12 +41,16 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
     <Exercise done={i} total={qs.length}
       left={`Вопрос ${i + 1} из ${qs.length} · верно ${score}`} onRestart={restart}>
       <p className="prompt-label">Какая фраза пропущена?</p>
-      <p className="sentence">
-        {q.pieces.map((pc, k) =>
-          pc.hidden ? (
-            <span key={k} aria-label={picked ? undefined : "пропуск"} className={"blank" + (picked ? (ok ? " blank-filled" : " blank-wrong") : "")}>{pc.text}</span>
-          ) : <span key={k}>{pc.text}</span>)}
-      </p>
+      <div className="sent-row">
+        <p className="sentence">
+          {q.pieces.map((pc, k) =>
+            pc.hidden ? (
+              <span key={k} aria-label={picked ? undefined : "пропуск"} className={"blank" + (picked ? (ok ? " blank-filled" : " blank-wrong") : "")}>{pc.text}</span>
+            ) : <span key={k}>{pc.text}</span>)}
+        </p>
+        {/* Озвучка всего предложения — только после ответа, чтобы не подсказывать ответ */}
+        {picked && <Speak text={q.prompt.ex} label="Слушать всё предложение" />}
+      </div>
       <p className="sent-ru">Подсказка: {q.prompt.ru}</p>
       <Options options={q.options} picked={picked} correct={q.prompt} onPick={pick} />
       {picked && (

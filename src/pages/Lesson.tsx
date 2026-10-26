@@ -5,16 +5,7 @@ import { Flashcards } from "@/components/quiz/Flashcards";
 import { ChoiceQuiz } from "@/components/quiz/ChoiceQuiz";
 import { GapQuiz } from "@/components/quiz/GapQuiz";
 import { getLesson, lessons } from "@/lessons";
-import { hasAudio, play } from "@/lib/audio";
-
-function Speak({ text, label }: { text: string; label: string }) {
-  if (!hasAudio(text)) return null;
-  return (
-    <button type="button" className="speak" aria-label={label} title={label} onClick={() => play(text)}>
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
-    </button>
-  );
-}
+import { Speak } from "@/components/quiz/parts";
 
 type Section = "phrases" | "quiz";
 type Mode = "cards" | "choice" | "gap";
@@ -63,10 +54,11 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
           {phrases.map((p) => (
             <li className="phrase" key={p.en}>
               <div>
-                <p className="ph-en">{p.en}<Speak text={p.en} label="Слушать фразу" /></p>
+                <p className="ph-en">{p.en}</p>
                 <p className="ph-ru">{p.ru}</p>
-                <p className="ph-ex">{p.ex}<Speak text={p.ex} label="Слушать пример" /></p>
+                <p className="ph-ex">{p.ex}</p>
               </div>
+              <Speak text={p.en} label="Слушать фразу" />
             </li>
           ))}
         </ol>

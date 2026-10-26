@@ -1,6 +1,17 @@
 import { Button } from "@/components/ui/button";
 import type { ReactNode } from "react";
 import type { Phrase } from "@/lessons/types";
+import { hasAudio, play } from "@/lib/audio";
+
+/** Кнопка прослушивания; прячется, если для текста нет озвучки. */
+export function Speak({ text, label }: { text: string; label: string }) {
+  if (!hasAudio(text)) return null;
+  return (
+    <button type="button" className="speak" aria-label={label} title={label} onClick={() => play(text)}>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+    </button>
+  );
+}
 
 export function Progress({ done, total }: { done: number; total: number }) {
   return (
