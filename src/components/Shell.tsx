@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export type NavItem = { id: string; label: string; badge?: number };
 
@@ -18,7 +18,7 @@ export function Shell({
   return (
     <div className="app">
       <header className="top">
-        <Link className="kicker" to="/">Разговорный английский</Link>
+        <p className="kicker">Разговорный английский</p>
         <h1 className="title">{title}</h1>
       </header>
 
