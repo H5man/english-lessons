@@ -72,6 +72,9 @@ dialog.pick::backdrop { background: rgba(20, 33, 29, .55); }
 .ph-ru { margin: 3px 0 0; color: var(--ink); font-size: 15px; }
 .ph-ex { margin: 8px 0 0; font-style: italic; color: var(--ink-soft); font-size: 15px; border-left: 3px solid var(--clay); padding-left: 10px; }
 
+.speak { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-left: 8px; vertical-align: middle; border: 2px solid var(--edge); border-radius: 50%; background: var(--paper); color: var(--pine-dark); cursor: pointer; padding: 0; font-style: normal; }
+.speak:hover, .speak:focus-visible { background: var(--pine-dark); border-color: var(--pine-dark); color: #fff; }
+
 /* телефон / узкий экран: шапка, под ней липкое меню сверху */
 @media (max-width: 719px) {
   .side { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--line); }
