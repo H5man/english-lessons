@@ -19,6 +19,21 @@ export function QMeta({ left, onRestart }: { left: ReactNode; onRestart: () => v
   );
 }
 
+/** Карточка упражнения: трекер (прогресс + счёт + «Заново») отделён в шапку, вопрос — в тело. */
+export function Exercise({ done, total, left, onRestart, children }: {
+  done: number; total: number; left: ReactNode; onRestart: () => void; children: ReactNode;
+}) {
+  return (
+    <div className="qcard">
+      <div className="qhead">
+        <Progress done={done} total={total} />
+        <QMeta left={left} onRestart={onRestart} />
+      </div>
+      <div className="qbody">{children}</div>
+    </div>
+  );
+}
+
 export function Missed({ items }: { items: Phrase[] }) {
   if (items.length === 0) return null;
   return (

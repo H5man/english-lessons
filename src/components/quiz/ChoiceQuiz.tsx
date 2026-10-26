@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Phrase } from "@/lessons/types";
 import { buildChoice } from "./quiz";
-import { Missed, NeedMore, Options, Progress, QMeta } from "./parts";
+import { Exercise, Missed, NeedMore, Options } from "./parts";
 
 export function ChoiceQuiz({ phrases }: { phrases: Phrase[] }) {
   const [round, setRound] = useState(0);
@@ -28,7 +28,6 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
     );
   }
   const q = qs[i];
-  const ok = picked === q.prompt;
   const pick = (p: Phrase) => {
     setPicked(p);
     if (p === q.prompt) setScore(score + 1);
@@ -37,18 +36,14 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
   const next = () => { setI(i + 1); setPicked(null); };
 
   return (
-    <div>
-      <Progress done={i} total={qs.length} />
-      <QMeta left={`Вопрос ${i + 1} из ${qs.length} · верно ${score}`} onRestart={restart} />
+    <Exercise done={i} total={qs.length}
+      left={`Вопрос ${i + 1} из ${qs.length} · верно ${score}`} onRestart={restart}>
       <p className="prompt-label">Выберите английскую фразу</p>
       <p className="prompt">{q.prompt.ru}</p>
       <Options options={q.options} picked={picked} correct={q.prompt} onPick={pick} />
       {picked && (
-        <>
-          <p className={"verdict " + (ok ? "ok" : "no")} role="status">{ok ? "Верно!" : "Не совсем. Правильный вариант подсвечен."}</p>
-          <Button variant="main" size="next" onClick={next}>{i + 1 === qs.length ? "Результат" : "Дальше"}</Button>
-        </>
+        <Button variant="main" size="next" onClick={next}>{i + 1 === qs.length ? "Результат" : "Дальше"}</Button>
       )}
-    </div>
+    </Exercise>
   );
 }

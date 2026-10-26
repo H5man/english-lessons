@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Phrase } from "@/lessons/types";
 import { buildGaps } from "./quiz";
-import { Missed, NeedMore, Options, Progress, QMeta } from "./parts";
+import { Exercise, Missed, NeedMore, Options } from "./parts";
 
 export function GapQuiz({ phrases }: { phrases: Phrase[] }) {
   const [round, setRound] = useState(0);
@@ -38,9 +38,8 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
   const next = () => { setI(i + 1); setPicked(null); };
 
   return (
-    <div>
-      <Progress done={i} total={qs.length} />
-      <QMeta left={`Вопрос ${i + 1} из ${qs.length} · верно ${score}`} onRestart={restart} />
+    <Exercise done={i} total={qs.length}
+      left={`Вопрос ${i + 1} из ${qs.length} · верно ${score}`} onRestart={restart}>
       <p className="prompt-label">Какая фраза пропущена?</p>
       <p className="sentence">
         {q.pieces.map((pc, k) =>
@@ -51,11 +50,8 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
       <p className="sent-ru">Подсказка: {q.prompt.ru}</p>
       <Options options={q.options} picked={picked} correct={q.prompt} onPick={pick} />
       {picked && (
-        <>
-          <p className={"verdict " + (ok ? "ok" : "no")} role="status">{ok ? "Верно!" : "Не совсем. Правильный вариант подсвечен."}</p>
-          <Button variant="main" size="next" onClick={next}>{i + 1 === qs.length ? "Результат" : "Дальше"}</Button>
-        </>
+        <Button variant="main" size="next" onClick={next}>{i + 1 === qs.length ? "Результат" : "Дальше"}</Button>
       )}
-    </div>
+    </Exercise>
   );
 }

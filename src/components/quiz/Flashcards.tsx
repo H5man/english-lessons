@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Phrase } from "@/lessons/types";
 import { shuffle } from "./quiz";
-import { Missed, Progress, QMeta } from "./parts";
+import { Exercise, Missed } from "./parts";
 
 export function Flashcards({ phrases }: { phrases: Phrase[] }) {
   const [round, setRound] = useState(0);
@@ -46,9 +46,8 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
   };
 
   return (
-    <div>
-      <Progress done={known} total={total} />
-      <QMeta left={`Выучено ${known} из ${total} · в очереди ${queue.length}`} onRestart={restart} />
+    <Exercise done={known} total={total}
+      left={`Выучено ${known} из ${total} · в очереди ${queue.length}`} onRestart={restart}>
       <p className="prompt-label">Как по-английски?</p>
       <p className="prompt">{card.ru}</p>
       {!shown ? (
@@ -65,6 +64,6 @@ function Round({ phrases, restart }: { phrases: Phrase[]; restart: () => void })
           </div>
         </>
       )}
-    </div>
+    </Exercise>
   );
 }
