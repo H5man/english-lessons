@@ -6,10 +6,6 @@ export default function Home() {
   return (
     <Shell title="Разговорный английский" home>
       <section className="panel">
-        <h2 className="home-h">Методики</h2>
-        <ul className="llist">
-          <li><Link className="llink" to="/methods">Методики разговорного английского</Link></li>
-        </ul>
         <h2 className="home-h">Уроки</h2>
         <ul className="llist">
           {lessons.map((l) => (

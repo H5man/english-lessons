@@ -2,11 +2,10 @@
 
 Сайт: https://h5man.github.io/english-lessons/ — одно React-приложение (Vite + React + TypeScript + Tailwind CSS + shadcn/ui, HashRouter).
 
-- `/#/` — список уроков и методик
+- `/#/` — список уроков
 - `/#/lesson/<id>[/phrases|/quiz]` — урок (фразы и упражнения: карточки, выбор, пропуск)
-- `/#/methods[/methods|/scenarios|/plan]` — «Методики разговорного английского»
 
-Старые адреса `…/<id>.html` и `…/methods-spoken-english.html` остаются рабочими (редиректы в `public/`).
+Старые адреса `…/<id>.html` остаются рабочими (редиректы в `public/`).
 
 ## Как добавить урок
 
@@ -43,4 +42,3 @@ npm run build    # tsc + vite build → dist/
 ```
 
 Деплой: `.github/workflows/deploy.yml` (npm ci → npm run build → upload-pages-artifact → deploy-pages), Pages: источник «GitHub Actions».
-Данные «Методик» лежат в `src/methods-data.ts`.

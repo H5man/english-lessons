@@ -5,11 +5,11 @@ export type NavItem = { id: string; label: string; badge?: number };
 
 /** Каркас страницы: полноширинная шапка, левое меню (на мобильном — липкое верхнее), контент. */
 export function Shell({
-  title, meta, docTitle, nav, active, onNav, navLabel, wide = false, home = false, footer, children,
+  title, docTitle, nav, active, onNav, navLabel, home = false, footer, children,
 }: {
-  title: ReactNode; meta?: ReactNode; docTitle?: string;
+  title: ReactNode; docTitle?: string;
   nav?: NavItem[]; active?: string; onNav?: (id: string) => void; navLabel?: string;
-  wide?: boolean; home?: boolean; footer?: ReactNode; children: ReactNode;
+  home?: boolean; footer?: ReactNode; children: ReactNode;
 }) {
   const { pathname } = useLocation();
   useEffect(() => { document.title = docTitle ?? (typeof title === "string" ? title : ""); }, [docTitle, title]);
@@ -21,7 +21,6 @@ export function Shell({
         {home ? <p className="kicker">Разговорный английский</p>
           : <Link className="kicker" to="/">Разговорный английский</Link>}
         <h1 className="title">{title}</h1>
-        {meta && <p className="meta">{meta}</p>}
       </header>
 
       <div className={"body" + (nav ? "" : " single")}>
@@ -38,7 +37,7 @@ export function Shell({
             </nav>
           </aside>
         )}
-        <main className={"content" + (wide ? " wide" : "")}>{children}</main>
+        <main className="content">{children}</main>
       </div>
       {footer && <footer className="foot">{footer}</footer>}
     </div>
