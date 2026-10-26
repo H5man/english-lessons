@@ -42,7 +42,6 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
         </button>
       }
       docTitle={`${lesson.title} · ${lesson.date}`}
-      footer={<>{lesson.date} · {lesson.phrases.length} {plural(lesson.phrases.length, ["фраза", "фразы", "фраз"])}</>}
       nav={[{ id: "phrases", label: "Фразы", badge: lesson.phrases.length }, { id: "quiz", label: "Упражнения" }]}
       navLabel="Разделы урока" active={section}
       onNav={(s) => navigate(`/lesson/${lessonId}/${s}`, { replace: true })}
@@ -77,13 +76,6 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
       </section>
     </Shell>
   );
-}
-
-function plural(n: number, f: [string, string, string]) {
-  const a = n % 10, b = n % 100;
-  if (a === 1 && b !== 11) return f[0];
-  if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return f[1];
-  return f[2];
 }
 
 // Модалка выбора темы: нативный <dialog> (Esc и возврат фокуса — браузерные), поиск по названию и дате.

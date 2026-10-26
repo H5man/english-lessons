@@ -5,11 +5,11 @@ export type NavItem = { id: string; label: string; badge?: number };
 
 /** Каркас страницы: полноширинная шапка, левое меню (на мобильном — липкое верхнее), контент. */
 export function Shell({
-  title, docTitle, nav, active, onNav, navLabel, home = false, footer, children,
+  title, docTitle, nav, active, onNav, navLabel, children,
 }: {
   title: ReactNode; docTitle?: string;
   nav?: NavItem[]; active?: string; onNav?: (id: string) => void; navLabel?: string;
-  home?: boolean; footer?: ReactNode; children: ReactNode;
+  children: ReactNode;
 }) {
   const { pathname } = useLocation();
   useEffect(() => { document.title = docTitle ?? (typeof title === "string" ? title : ""); }, [docTitle, title]);
@@ -18,12 +18,11 @@ export function Shell({
   return (
     <div className="app">
       <header className="top">
-        {home ? <p className="kicker">Разговорный английский</p>
-          : <Link className="kicker" to="/">Разговорный английский</Link>}
+        <Link className="kicker" to="/">Разговорный английский</Link>
         <h1 className="title">{title}</h1>
       </header>
 
-      <div className={"body" + (nav ? "" : " single")}>
+      <div className="body">
         {nav && (
           <aside className="side">
             <nav className="nav" role="tablist" aria-label={navLabel} aria-orientation="vertical">
@@ -39,7 +38,6 @@ export function Shell({
         )}
         <main className="content">{children}</main>
       </div>
-      {footer && <footer className="foot">{footer}</footer>}
     </div>
   );
 }
