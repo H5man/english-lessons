@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Shell } from "@/components/Shell";
 import { Flashcards } from "@/components/quiz/Flashcards";
@@ -30,15 +30,16 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
   const [mode, setMode] = useState<Mode>("cards");
   const hint = MODES.find((t) => t.id === mode)!.hint;
 
+  const [pickOpen, setPickOpen] = useState(false);
+
   return (
     <Shell
-      // Заголовок страницы — выпадающий список всех уроков: тему можно сменить прямо здесь.
-      // replace: перебор тем стрелками не засоряет историю.
+      // Заголовок — кнопка, открывающая модалку выбора темы (список + поиск).
       title={
-        <select className="title-pick" value={lessonId} aria-label="Тема урока"
-          onChange={(e) => navigate(`/lesson/${e.target.value}`, { replace: true })}>
-          {lessons.map((l) => <option key={l.id} value={l.id}>{l.title}</option>)}
-        </select>
+        <button type="button" className="title-pick" aria-haspopup="dialog"
+          onClick={() => setPickOpen(true)}>
+          {lesson.title}
+        </button>
       }
       docTitle={`${lesson.title} · ${lesson.date}`}
       footer={<>{lesson.date} · {lesson.phrases.length} {plural(lesson.phrases.length, ["фраза", "фразы", "фраз"])}</>}
@@ -46,6 +47,7 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
       navLabel="Разделы урока" active={section}
       onNav={(s) => navigate(`/lesson/${lessonId}/${s}`, { replace: true })}
     >
+      <TopicPick open={pickOpen} current={lessonId} onClose={() => setPickOpen(false)} />
       {/* Обе панели всегда смонтированы: состояние квиза не теряется при переключении вкладок */}
       <section className="panel" id="panel-phrases" role="tabpanel" aria-labelledby="main-phrases" hidden={section !== "phrases"}>
         <ol className="phrases">
@@ -82,4 +84,46 @@ function plural(n: number, f: [string, string, string]) {
   if (a === 1 && b !== 11) return f[0];
   if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return f[1];
   return f[2];
+}
+
+// Модалка выбора темы: нативный <dialog> (Esc и возврат фокуса — браузерные), поиск по названию и дате.
+function TopicPick({ open, current, onClose }: { open: boolean; current: string; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const [q, setQ] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    if (open && !d.open) { setQ(""); d.showModal(); }
+    if (!open && d.open) d.close();
+  }, [open]);
+
+  const norm = (s: string) => s.toLowerCase().replace(/ё/g, "е");
+  const needle = norm(q.trim());
+  const found = lessons.filter((l) => norm(l.title + " " + l.date).includes(needle));
+
+  return (
+    <dialog ref={ref} className="pick" aria-label="Выбор темы урока"
+      onClose={onClose}
+      onClick={(e) => { if (e.target === ref.current) onClose(); }}>
+      <div className="pick-head">
+        <input autoFocus value={q} onChange={(e) => setQ(e.target.value)}
+          placeholder="Поиск темы…" aria-label="Поиск темы" />
+        <button type="button" className="pick-x" onClick={onClose} aria-label="Закрыть">×</button>
+      </div>
+      <ul className="pick-list">
+        {found.map((l) => (
+          <li key={l.id}>
+            <button type="button" className={"pick-item" + (l.id === current ? " current" : "")}
+              onClick={() => { onClose(); if (l.id !== current) navigate(`/lesson/${l.id}`); }}>
+              {l.title}
+              <small>{l.date}</small>
+            </button>
+          </li>
+        ))}
+        {found.length === 0 && <li className="pick-empty">Ничего не найдено</li>}
+      </ul>
+    </dialog>
+  );
 }
