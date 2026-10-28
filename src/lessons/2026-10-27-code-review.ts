@@ -24,5 +24,11 @@ export const lesson: Lesson = {
     { en: "Looks good to me", ru: "Выглядит хорошо, одобряю (LGTM)", ex: "Looks good to me, just one small comment." },
     { en: "Can we keep this out of scope for now?", ru: "Можем пока оставить это за рамками задачи?", ex: "Can we keep this out of scope for now and open a separate ticket?" },
     { en: "I'd rather not block the PR over this", ru: "Не хотелось бы блокировать PR из-за этого", ex: "I'd rather not block the PR over this, let's fix it in a follow-up." },
+    { en: "I'm a bit concerned about…", ru: "Меня немного беспокоит…", ex: "I'm a bit concerned about the performance of this query." },
+    { en: "What if we…?", ru: "А что если мы…?", ex: "What if we moved the validation to the API layer?" },
+    { en: "I'd lean towards…", ru: "Я бы склонялась к…", ex: "I'd lean towards a simpler solution for now." },
+    { en: "Is there a reason we're not…?", ru: "Есть ли причина, почему мы не…?", ex: "Is there a reason we're not using the existing helper?" },
+    { en: "That makes sense, but…", ru: "Логично, но…", ex: "That makes sense, but it might be hard to test." },
+    { en: "I'm happy to change it if…", ru: "Я готова это изменить, если…", ex: "I'm happy to change it if you think it's clearer." },
   ],
 };
