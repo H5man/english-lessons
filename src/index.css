@@ -172,3 +172,29 @@ dialog.pick::backdrop { background: rgba(20, 33, 29, .55); }
 .panel a { color: var(--pine); text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
 .panel a:hover { color: var(--clay); }
 
+
+/* shadowing: text of each sentence + play button; repeat and "play all" controls */
+.sh-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; padding: 10px 0 12px; border-bottom: 1px solid var(--line); }
+.sh-group { display: flex; align-items: center; gap: 6px; }
+.sh-label { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); font-weight: 600; margin-right: 4px; }
+.sh-seg { min-width: 40px; min-height: 36px; padding: 4px 8px; border: 2px solid var(--edge); background: var(--paper); font-weight: 600; font-size: 14px; border-radius: 2px; }
+.sh-seg:hover { border-color: var(--pine-dark); }
+.sh-seg[aria-checked="true"] { background: var(--pine-dark); border-color: var(--pine-dark); color: #fff; }
+.sh-ru-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-soft); cursor: pointer; min-height: 36px; }
+.sh-ru-toggle input { width: 18px; height: 18px; accent-color: var(--pine-dark); }
+.sh-sec { margin-top: 22px; }
+.sh-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 6px; border-bottom: 2px solid var(--ink); }
+.sh-title { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--pine-dark); margin: 0; }
+.sh-all { flex: none; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 12px; border: 2px solid var(--pine); background: var(--pine); color: #fff; font-weight: 600; font-size: 14px; border-radius: 2px; }
+.sh-all:hover { background: var(--pine-dark); border-color: var(--pine-dark); }
+.sh-all.on { background: transparent; color: var(--clay); border-color: var(--clay); }
+.sh-lines { list-style: none; margin: 0; padding: 0; counter-reset: sh; }
+.sh-line { display: grid; grid-template-columns: 26px 1fr auto; gap: 0 10px; padding: 12px 6px 12px 0; border-bottom: 1px solid var(--line); counter-increment: sh; transition: background .15s; }
+.sh-line::before { content: counter(sh); font-size: 12px; color: var(--ink-soft); padding-top: 4px; text-align: right; font-variant-numeric: tabular-nums; }
+.sh-line.on { background: var(--paper-2); box-shadow: inset 4px 0 0 var(--clay); }
+.sh-line .speak { align-self: start; }
+.speak.on { background: var(--clay); border-color: var(--clay); color: #fff; }
+.sh-en { font-family: var(--serif); font-size: 19px; line-height: 1.4; margin: 0; color: var(--ink); }
+.sh-line.on .sh-en { color: var(--pine-dark); }
+.sh-who { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--clay); margin-right: 6px; }
+.sh-ru { margin: 3px 0 0; color: var(--ink-soft); font-size: 14px; }

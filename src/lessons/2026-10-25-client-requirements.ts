@@ -43,4 +43,32 @@ export const lesson: Lesson = {
     { en: "Let's agree on the priorities first.", ru: "Давайте сначала договоримся о приоритетах.", ex: "Let's agree on the priorities first, then I'll give you an estimate." },
     { en: "I'll send you a written summary after the call.", ru: "Я пришлю вам письменное резюме после звонка.", ex: "I'll send you a written summary after the call, so we're all aligned." },
   ],
+  shadowing: [
+    {
+      title: "Фразы урока в новых предложениях",
+      lines: [
+        { en: "Just to make sure I understand, the dashboard is only for admins?", ru: "Просто чтобы убедиться, что я правильно понимаю: дашборд только для админов?" },
+        { en: "Could you walk me through a typical day for your users?", ru: "Не могли бы вы рассказать, как проходит обычный день ваших пользователей?" },
+        { en: "In terms of scope, we'll start with the mobile version.", ru: "Что касается объёма работ, мы начнём с мобильной версии." },
+        { en: "A rough estimate would be four to five weeks.", ru: "Примерная оценка — четыре-пять недель." },
+        { en: "That depends on how much data we need to migrate.", ru: "Это зависит от того, сколько данных нужно перенести." },
+        { en: "Is dark mode a must-have or a nice-to-have?", ru: "Тёмная тема — это обязательно или было бы неплохо?" },
+        { en: "That's out of scope for the first version, but it's a great idea for phase two.", ru: "Это не входит в первую версию, но это отличная идея для второго этапа." },
+        { en: "Let me make sure we're on the same page about the deadline.", ru: "Давайте убедимся, что мы одинаково понимаем дедлайн." },
+      ],
+    },
+    {
+      title: "Монолог: разговор с клиентом",
+      lines: [
+        { en: "Thanks for the overview. Let me check I've got it right.", ru: "Спасибо за обзор. Давайте проверю, правильно ли я поняла." },
+        { en: "You need an online booking system for your three clinics.", ru: "Вам нужна система онлайн-записи для трёх ваших клиник." },
+        { en: "Could you give me an example of a really busy day?", ru: "Можете привести пример по-настоящему загруженного дня?" },
+        { en: "Got it. I'd suggest we start with booking and cancellations only.", ru: "Понятно. Я бы предложила начать только с записи и отмены." },
+        { en: "SMS reminders would add about a week to the timeline.", ru: "SMS-напоминания добавят к срокам примерно неделю." },
+        { en: "My best guess is six weeks for the first phase.", ru: "По моей лучшей оценке, на первый этап уйдёт шесть недель." },
+        { en: "Realistically, we can deliver a beta by early December.", ru: "Реально мы можем выпустить бету к началу декабря." },
+        { en: "I'll double-check the details with the team and get back to you on Monday.", ru: "Я перепроверю детали с командой и вернусь к вам в понедельник." },
+      ],
+    },
+  ],
 };

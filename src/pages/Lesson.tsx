@@ -6,8 +6,9 @@ import { ChoiceQuiz } from "@/components/quiz/ChoiceQuiz";
 import { GapQuiz } from "@/components/quiz/GapQuiz";
 import { getLesson, lessons } from "@/lessons";
 import { Speak } from "@/components/quiz/parts";
+import { Shadowing } from "@/components/Shadowing";
 
-type Section = "phrases" | "quiz";
+type Section = "phrases" | "quiz" | "shadowing";
 type Mode = "cards" | "choice" | "gap";
 
 const MODES: { id: Mode; label: string; hint: string }[] = [
@@ -21,12 +22,14 @@ export default function LessonPage() {
   const lesson = getLesson(id);
   if (!lesson) return <Navigate to="/" replace />;
   // key: при переходе на другой урок состояние квиза начинается с нуля
-  return <LessonView key={lesson.id} lessonId={lesson.id} section={section === "quiz" ? "quiz" : "phrases"} />;
+  return <LessonView key={lesson.id} lessonId={lesson.id}
+    section={section === "quiz" ? "quiz" : section === "shadowing" && lesson.shadowing?.length ? "shadowing" : "phrases"} />;
 }
 
 function LessonView({ lessonId, section }: { lessonId: string; section: Section }) {
   const lesson = getLesson(lessonId)!;
   const { phrases } = lesson;
+  const shadowing = lesson.shadowing ?? [];
   const navigate = useNavigate();
   const [mode, setMode] = useState<Mode>("cards");
   const hint = MODES.find((t) => t.id === mode)!.hint;
@@ -43,7 +46,12 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
         </button>
       }
       docTitle={`${lesson.title} · ${lesson.date}`}
-      nav={[{ id: "phrases", label: "Фразы", badge: lesson.phrases.length }, { id: "quiz", label: "Упражнения" }]}
+      nav={[
+        { id: "phrases", label: "Фразы", badge: lesson.phrases.length },
+        { id: "quiz", label: "Упражнения" },
+        // Shadowing tab only for lessons that have shadowing data
+        ...(shadowing.length ? [{ id: "shadowing", label: "Shadowing", badge: shadowing.reduce((n, s) => n + s.lines.length, 0) }] : []),
+      ]}
       navLabel="Разделы урока" active={section}
       onNav={(s) => navigate(`/lesson/${lessonId}/${s}`, { replace: true })}
     >
@@ -76,6 +84,12 @@ function LessonView({ lessonId, section }: { lessonId: string; section: Section 
         <div id="quiz-choice" hidden={mode !== "choice"}><ChoiceQuiz phrases={phrases} /></div>
         <div id="quiz-gap" hidden={mode !== "gap"}><GapQuiz phrases={phrases} /></div>
       </section>
+
+      {shadowing.length > 0 && (
+        <section className="panel" id="panel-shadowing" role="tabpanel" aria-labelledby="main-shadowing" hidden={section !== "shadowing"}>
+          <Shadowing sections={shadowing} active={section === "shadowing"} />
+        </section>
+      )}
     </Shell>
   );
 }

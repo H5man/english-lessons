@@ -7,7 +7,7 @@ import { lesson as l_2026_10_25_client_requirements } from "./2026-10-25-client-
 import { lesson as l_2026_10_23_tech_decision } from "./2026-10-23-tech-decision";
 import { lesson as l_2026_10_22_standup } from "./2026-10-22-standup";
 
-export type { Lesson, Phrase } from "./types";
+export type { Lesson, Phrase, ShadowLine, ShadowSection } from "./types";
 
 // Порядок = порядок в списке на главной (новые сверху).
 export const lessons: Lesson[] = [

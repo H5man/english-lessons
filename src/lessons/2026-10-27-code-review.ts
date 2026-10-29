@@ -31,4 +31,32 @@ export const lesson: Lesson = {
     { en: "That makes sense, but…", ru: "Логично, но…", ex: "That makes sense, but it might be hard to test." },
     { en: "I'm happy to change it if…", ru: "Я готова это изменить, если…", ex: "I'm happy to change it if you think it's clearer." },
   ],
+  shadowing: [
+    {
+      title: "Фразы урока в новых предложениях",
+      lines: [
+        { en: "Have you considered adding a timeout to this request?", ru: "Вы не думали добавить таймаут к этому запросу?" },
+        { en: "What's the reasoning behind splitting this into two services?", ru: "Почему вы решили разделить это на два сервиса?" },
+        { en: "This might cause issues with older browsers.", ru: "Это может вызвать проблемы в старых браузерах." },
+        { en: "It's a minor thing, but there's a typo in this comment.", ru: "Мелочь, но в этом комментарии опечатка." },
+        { en: "Would it make sense to move these constants to a config file?", ru: "Может, имеет смысл вынести эти константы в конфиг?" },
+        { en: "I'm a bit concerned about the size of this pull request.", ru: "Меня немного беспокоит размер этого пул-реквеста." },
+        { en: "Good point, I'll fix that before lunch.", ru: "Хорошее замечание, исправлю до обеда." },
+        { en: "I see where you're coming from, so let's try your version.", ru: "Я понимаю вашу логику, так что давайте попробуем ваш вариант." },
+      ],
+    },
+    {
+      title: "Диалог: обсуждаем ревью",
+      lines: [
+        { who: "Anna", en: "Hi Mark, thanks for the review. Could you walk me through your main comment?", ru: "Привет, Марк, спасибо за ревью. Можешь пояснить свой главный комментарий?" },
+        { who: "Mark", en: "Sure. I'm a bit concerned about error handling in the upload service.", ru: "Конечно. Меня немного беспокоит обработка ошибок в сервисе загрузки." },
+        { who: "Anna", en: "Fair point, but the queue already retries failed uploads.", ru: "Справедливо, но очередь уже повторяет неудачные загрузки." },
+        { who: "Mark", en: "Ah, I missed that. Is there a reason we're not logging the failures, though?", ru: "А, я это упустил. Но есть причина, почему мы не логируем сбои?" },
+        { who: "Anna", en: "No, good point. I'll fix that and add a test.", ru: "Нет, хорошее замечание. Исправлю и добавлю тест." },
+        { who: "Mark", en: "Great. The rest are just nitpicks, so feel free to ignore them.", ru: "Отлично. Остальное — мелкие придирки, можешь их игнорировать." },
+        { who: "Anna", en: "Thanks! I'll ping you once I've addressed everything.", ru: "Спасибо! Напишу тебе, когда всё поправлю." },
+        { who: "Mark", en: "Sounds good. After that, it's ready to merge.", ru: "Договорились. После этого можно мёржить." },
+      ],
+    },
+  ],
 };

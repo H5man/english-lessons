@@ -23,4 +23,32 @@ export const lesson: Lesson = {
     { en: "What time is it over there?", ru: "Сколько у вас сейчас времени?", ex: "It's evening here. What time is it over there?" },
     { en: "Have a great weekend!", ru: "Хороших выходных!", ex: "Thanks, everyone. Have a great weekend!" },
   ],
+  shadowing: [
+    {
+      title: "Фразы урока в новых предложениях",
+      lines: [
+        { en: "Hi Sam! How's your week going? Still busy with the mobile app?", ru: "Привет, Сэм! Как проходит неделя? Всё ещё занят мобильным приложением?" },
+        { en: "Not too bad, thanks. And you? Did you get some rest?", ru: "Неплохо, спасибо. А у тебя? Удалось отдохнуть?" },
+        { en: "It's been a busy week, lots of meetings and not much coding.", ru: "Неделя выдалась насыщенной: много встреч и мало кода." },
+        { en: "How's the weather over there? I heard it's freezing.", ru: "Как у вас там погода? Слышала, у вас морозы." },
+        { en: "So, did you do anything fun over the weekend with the kids?", ru: "Ну что, делали что-нибудь интересное с детьми на выходных?" },
+        { en: "A cooking class? That sounds like fun!", ru: "Кулинарный мастер-класс? Звучит здорово!" },
+        { en: "Sorry, you cut out again. Can you hear me okay now?", ru: "Извини, ты опять пропал. Сейчас меня хорошо слышно?" },
+        { en: "Right, Anna's here too. Anyway, shall we get started with the demo?", ru: "Так, Анна тоже здесь. Ну что, начнём с демо?" },
+      ],
+    },
+    {
+      title: "Диалог: первые минуты созвона",
+      lines: [
+        { who: "Tom", en: "Hi Maria, good to see you again! Can you hear me okay?", ru: "Привет, Мария, рад снова тебя видеть! Хорошо меня слышно?" },
+        { who: "Maria", en: "Yes, loud and clear. How's your week going?", ru: "Да, отлично. Как проходит твоя неделя?" },
+        { who: "Tom", en: "Not too bad, thanks. It's been a busy week, but the release went well.", ru: "Неплохо, спасибо. Неделя была насыщенной, но релиз прошёл хорошо." },
+        { who: "Maria", en: "Oh, really? Congrats! Any plans for the weekend?", ru: "Правда? Поздравляю! Есть планы на выходные?" },
+        { who: "Tom", en: "We're going to the mountains. I've been meaning to try skiing for years.", ru: "Едем в горы. Я уже много лет собираюсь попробовать лыжи." },
+        { who: "Maria", en: "That sounds like fun! What time is it over there, by the way?", ru: "Звучит здорово! Кстати, который у вас там час?" },
+        { who: "Tom", en: "Almost six. Let's give it another minute for the others to join.", ru: "Почти шесть. Давай подождём ещё минуту, пока подключатся остальные." },
+        { who: "Maria", en: "Sure. Oh, here they are. Anyway, shall we get started?", ru: "Конечно. О, вот и они. Ну что, начнём?" },
+      ],
+    },
+  ],
 };

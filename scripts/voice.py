@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""Озвучка фраз и примеров урока(ов) голосом Ryan (en-GB). usage: voice.py <lesson-id|all> ...
-Файлы: public/audio/<slug>.mp3 (slug = slugify(текста), как в src/lib/audio.ts); список — src/audio-manifest.ts"""
+"""Voices lesson texts with Ryan (en-GB, rate -10%). usage: voice.py <lesson-id|all> ...
+Voiced: every `en:` and `ex:` string in src/lessons/20*.ts, i.e. phrases, their examples and
+shadowing lines (`shadowing[].lines[].en`; `who`/`ru` are not voiced). Each text is voiced once.
+Files: public/audio/<slug>.mp3 (slug = slugify(text), same as src/lib/audio.ts); existing files are kept.
+List of voiced slugs: src/audio-manifest.ts"""
 import json, re, subprocess, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 VOICE, RATE = "en-GB-RyanNeural", "-10%"
