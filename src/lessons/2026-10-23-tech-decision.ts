@@ -29,7 +29,7 @@ export const lesson: Lesson = {
     { en: "The main reason is…", ru: "Главная причина — …", ex: "The main reason is our small team size." },
     { en: "The trade-off is…", ru: "Компромисс в том, что…", ex: "The trade-off is a slightly more complex deployment." },
     { en: "It comes down to…", ru: "Всё сводится к…", ex: "Honestly, it comes down to time and budget." },
-    { en: "We can revisit this if requirements change.", ru: "Мы можем пересмотреть это, если требования изменятся.", ex: "If traffic grows ten times, we can revisit this if requirements change." },
+    { en: "We can revisit this if requirements change.", ru: "Мы можем пересмотреть это, если требования изменятся.", ex: "This setup is fine for now, and we can revisit this if requirements change." },
     { en: "The upside is that…", ru: "Плюс в том, что…", ex: "The upside is that new developers get productive within days." },
     { en: "Given the timeline, …", ru: "Учитывая сроки, …", ex: "Given the timeline, we chose the simplest option." },
     { en: "That's a fair question.", ru: "Справедливый вопрос.", ex: "That's a fair question, and I'm glad you asked." },
@@ -61,7 +61,7 @@ export const lesson: Lesson = {
         { en: "The upside is that deployments are now fully automatic.", ru: "Плюс в том, что деплой теперь полностью автоматический." },
         { en: "Given the timeline, a full migration wasn't realistic.", ru: "Учитывая сроки, полная миграция была нереалистичной." },
         { en: "Long story short, we picked the option with the least risk.", ru: "Короче говоря, мы выбрали вариант с наименьшим риском." },
-        { en: "If the load doubles, we can revisit this if requirements change.", ru: "Если нагрузка удвоится, мы можем пересмотреть решение, если требования изменятся." },
+        { en: "Postgres works for our current load, but we can revisit this if requirements change.", ru: "Postgres справляется с текущей нагрузкой, но мы можем пересмотреть решение, если требования изменятся." },
       ],
     },
     {
